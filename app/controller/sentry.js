@@ -13,11 +13,18 @@ class SentryController extends Controller {
     async recvSentryWebhook() {
         const { ctx } = this;
         const { request: { body } } = ctx;
-        const error = body.data && body.data.error || {};
+        const error = body.data && body.data.error;
 
         ctx.logger.info(body);
+        if (!error) {
+            ctx.body = {
+                status: 'error',
+                msg: '参数为空',
+            };    
+            return;
+        }
 
-        const ROBOT_DATA = {
+        const robotData = {
             msgtype: 'markdown',
             markdown: {
                 content: `<font color=\"warning\">${error.release || error.extra._productName}</font>发生错误:
@@ -34,7 +41,7 @@ class SentryController extends Controller {
             headers: {
                 'content-type': 'application/json',
             },
-            data: JSON.stringify(ROBOT_DATA),
+            data: JSON.stringify(robotData),
         });
 
         ctx.body = {
