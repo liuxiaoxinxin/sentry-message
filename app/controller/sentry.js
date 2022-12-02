@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 const axios = require('axios');
 const CircularJSON = require('circular-json');
 
-const WechatWebHook = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f151e890-cc55-4859-9020-f15e2423bca4';
+const WechatWebHook = '填写你的webhook地址';
 
 class SentryController extends Controller {
     /**
