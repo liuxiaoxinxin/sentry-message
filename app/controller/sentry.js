@@ -27,7 +27,7 @@ class SentryController extends Controller {
             msgtype: 'markdown',
             markdown: {
                 content: `<font color=\"warning\">${body.project_name}</font>发生错误:
-                    > 错误原因: <font color=\"info\">${body.title}</font>
+                    > 错误原因: <font color=\"info\">${body.message}</font>
                     > 错误时间: <font color=\"info\">${this.fmtDateTime()}</font>
                     > 错误级别: <font color=\"${body.level === 'fatal' ? '#FF0000' : '#008000'}\">${body.level}</font>
                     > 错误链接: [查看日志](${body.url})`,
